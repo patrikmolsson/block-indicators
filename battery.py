@@ -22,27 +22,27 @@ for i in range(numberOfBatteries):
 
 percentage_left = energy_now / energy_full * 100
 
-icon = "\uf1e6"
+icon = ""
+
 time_left = 0
 if bat_status == "Discharging":
     time_left = energy_now / power_now
     if percentage_left > 87.5:
-        icon = "\uf240"
+        icon = ""
     elif percentage_left > 62.5:
-        icon = "\uf241"
+        icon = ""
     elif percentage_left > 37.5:
-        icon = "\uf242"
+        icon = ""
     elif percentage_left > 10:
-        icon = "\uf243"
+        icon = ""
     else:
-        icon = "\uf244"
+        icon = ""
 elif bat_status == "Charging":
     time_left = ( energy_full - energy_now ) / power_now
-    icon += " \uf0e7"
+    icon += " "
 
 icon_text = "<span font='FontAwesome'>{}</span>".format(icon)
 percentage_left_text = "{:.0f}%".format(percentage_left)
-
 time_left_text = " "
 
 if (time_left > 0):
