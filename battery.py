@@ -17,7 +17,7 @@ for i in range(numberOfBatteries):
         energy_full += int(f.read())
     with open('/sys/class/power_supply/BAT{}/status'.format(i)) as f:
         temp_status = f.read().strip()
-    if temp_status != "Unknown":
+    if temp_status != "Unknown" and bat_status != "Discharging" and bat_status != "Charging":
         bat_status = temp_status
 
 percentage_left = energy_now / energy_full * 100
@@ -49,5 +49,6 @@ if (time_left > 0):
     time_left_text = " ({:0>2d}:{:0>2d})".format(math.floor(time_left), math.floor((time_left % 1) * 60))
 
 print("{} {}{}".format(icon_text, percentage_left_text, time_left_text))
-if percentage_left < 10:
+
+if percentage_left < 10 and bat_status == "Discharging":
     exit(33)
