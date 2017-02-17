@@ -42,13 +42,17 @@ elif bat_status == "Charging":
     icon += " "
 
 icon_text = "<span font='FontAwesome'>{}</span>".format(icon)
-percentage_left_text = "{:.0f}%".format(percentage_left)
+
+percentage_left_text = ""
+if (percentage_left < 100):
+    percentage_left_text = " {:.0f}%".format(percentage_left)
+
 time_left_text = " "
 
 if (time_left > 0):
     time_left_text = " ({:0>2d}:{:0>2d})".format(math.floor(time_left), math.floor((time_left % 1) * 60))
 
-print("{} {}{}".format(icon_text, percentage_left_text, time_left_text))
+print("{}{}{}".format(icon_text, percentage_left_text, time_left_text))
 
 if percentage_left < 10 and bat_status == "Discharging":
     exit(33)
