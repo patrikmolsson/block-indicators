@@ -1,0 +1,11 @@
+#!/bin/bash
+#pgrep openvpn > /dev/null && echo "" || echo ""
+
+if [ $(pgrep openvpn) -gt 1 ]
+then
+  state="";
+else
+  state="";
+fi
+
+printf "<span font='FontAwesome'>%s</span>" "$state"
